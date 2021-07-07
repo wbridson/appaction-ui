@@ -1,6 +1,6 @@
 <template>
-  <section width="300" class="pa-10 ma-0">
-    <v-card width="300" height="300" class="mr-0" color="secondary">
+  <section width="300" class="pa-10">
+    <v-card width="300" height="300" class="" color="secondary">
       <v-container>
         <div class="d-flex justify-end">
           <v-btn icon @click="$emit('close')"><v-icon>mdi-window-close</v-icon></v-btn>

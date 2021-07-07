@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-toolbar
-        id="toolbar"
+      id="toolbar"
       dark
       prominent
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      color="primary darken-2"
     >
       <v-app-bar-nav-icon  @click="$emit('drawer')"></v-app-bar-nav-icon>
 

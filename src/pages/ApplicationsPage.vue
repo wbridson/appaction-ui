@@ -1,11 +1,11 @@
 <template>
   <section>
-    <v-row no-gutters>
+    <!-- <v-row no-gutters>
       <v-col v-if="drawerisActive" cols="2" class="pa-0 ma-0">
         <drawer></drawer>
       </v-col>
       <v-col cols='drawerisActive ? 9 : 12' class="pa-0 ma-0">
-        <the-tool-bar title="App Action Control"  @drawer="Drawer"></the-tool-bar>
+        <the-tool-bar title="App Action Control"  @drawer="Drawer"></the-tool-bar> -->
 
         <v-container>
           <v-row dense>
@@ -25,8 +25,8 @@
             ></application-card>
           </v-row>
         </v-container>
-      </v-col>
-    </v-row>
+      <!-- </v-col> -->
+    <!-- </v-row> -->
   </section>
 </template>
 
@@ -34,13 +34,13 @@
 import ApplicationCard from "../components/UI/ApplicationCard.vue";
 import AddApplicationButton from "../components/UI/AddApplicationButton.vue";
 import AddApplicationForm from "../components/UI/AddApplicationForm.vue";
-import Drawer from "../components/UI/Drawer.vue";
+//import Drawer from "../components/UI/Drawer.vue";
 export default {
   components: {
     ApplicationCard,
     AddApplicationButton,
     AddApplicationForm,
-    Drawer,
+   // Drawer,
   },
   data() {
     return {

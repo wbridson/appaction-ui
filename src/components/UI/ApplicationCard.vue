@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       isHovering: false,
-      buttonColor: "secondary",
+      buttonColor: "primary lighten-4",
     };
   },
   methods: {
