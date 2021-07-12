@@ -21,6 +21,9 @@
               v-for="app in apps"
               :key="app.appId"
               :appTitle="app.appTitle"
+              :appUrl="app.appUrl"
+              :activeFrom="app.activeFrom"
+              :activeTo="app.activeTo"
               :usersOnline="app.usersOnline"
             ></application-card>
           </v-row>
@@ -48,16 +51,25 @@ export default {
         {
           appId: "mgmark",
           appTitle: "My Growmark",
+          appUrl: "https://mygrowmark.com",
+          activeFrom: '1-11-1111',
+          activeTo: '2-22-2222',
           usersOnline: "8",
         },
         {
           appId: "ecc",
           appTitle: "ECC",
+          appUrl: "https://ecc.com",
+          activeFrom: '1-11-1111',
+          activeTo: '2-22-2222',
           usersOnline: "4",
         },
         {
           appId: "soybean",
           appTitle: "Plantform",
+          appUrl: "https://plantform.com",
+          activeFrom: '1-11-1111',
+          activeTo: '2-22-2222',
           usersOnline: "30000",
         },
       ],
@@ -73,14 +85,20 @@ export default {
     AddApplication() {
       this.isAdding = true;
     },
-    Confirm(name, usersOnline) {
+    Confirm(name, url, activeFrom, activeTo, usersOnline) {
       this.isAdding = false;
       this.apps.unshift({
         appId: this.idCounter,
         appTitle: name,
-        usersOnline: usersOnline,
+        appUrl: url,
+        activeFrom: activeFrom,
+        activeTo: activeTo,
+        usersOnline: 13,
       });
       this.idCounter++;
+      console.log(usersOnline);
+      console.log("aciveFrom" + activeFrom);
+      console.log( " active to " + activeTo);
     },
     Close(){
       this.isAdding = false;

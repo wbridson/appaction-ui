@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-row no-gutters class="secondary lighten-4">
+    <v-row no-gutters >
       <v-col v-if="drawerisActive" cols="2" class="pa-0 ma-0">
         <drawer></drawer>
       </v-col>
