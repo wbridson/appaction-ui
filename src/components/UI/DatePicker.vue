@@ -6,7 +6,6 @@
       prev-icon="mdi-skip-previous"
       next-icon="mdi-skip-next"
       elevation="24"
-      
     ></v-date-picker>
   </v-row>
 </template>

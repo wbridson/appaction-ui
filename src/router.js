@@ -10,7 +10,7 @@ export default new Router({
   //history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/applications' },
-    { path: '/applications', component: ApplicationsPage },
+    { path: '/applications', component: ApplicationsPage,},
     { path: '/testpage', component: TestPage },
   ],
 });

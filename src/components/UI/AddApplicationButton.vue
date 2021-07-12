@@ -3,7 +3,7 @@
     <v-container width="300" height="279" class="pl-6 pr-7 d-flex justify-center align-center">
       <div class="my-2 px-6 pt-4 pb-3">
         <v-btn
-          class="text-h1 weight-bold blue"
+          class="text-h1 weight-bold"
           x-large
           :color="buttonColor"
           dark

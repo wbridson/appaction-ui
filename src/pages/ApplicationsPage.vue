@@ -7,8 +7,10 @@
       <v-col cols='drawerisActive ? 9 : 12' class="pa-0 ma-0">
         <the-tool-bar title="App Action Control"  @drawer="Drawer"></the-tool-bar> -->
 
-        <v-container>
-          <v-row dense>
+    <v-container>
+      <v-row dense>
+        <v-col cols="isFilterOpen ? 10 : 12">
+          <div class="d-flex flex-wrap">
             <add-application-button
               @add-app="AddApplication"
             ></add-application-button>
@@ -26,9 +28,15 @@
               :activeTo="app.activeTo"
               :usersOnline="app.usersOnline"
             ></application-card>
-          </v-row>
-        </v-container>
-      <!-- </v-col> -->
+          </div>
+        </v-col>
+
+        <v-col v-if="isFilterOpen" cols="2">
+          <div v-if="isFilterOpen" style="background-color: blue; min-height: 100%"><p>hi</p></div>
+        </v-col>
+      </v-row>
+    </v-container>
+    <!-- </v-col> -->
     <!-- </v-row> -->
   </section>
 </template>
@@ -43,7 +51,6 @@ export default {
     ApplicationCard,
     AddApplicationButton,
     AddApplicationForm,
-   // Drawer,
   },
   data() {
     return {
@@ -52,38 +59,36 @@ export default {
           appId: "mgmark",
           appTitle: "My Growmark",
           appUrl: "https://mygrowmark.com",
-          activeFrom: '1-11-1111',
-          activeTo: '2-22-2222',
+          activeFrom: "1-11-1111",
+          activeTo: "2-22-2222",
           usersOnline: "8",
         },
         {
           appId: "ecc",
           appTitle: "ECC",
           appUrl: "https://ecc.com",
-          activeFrom: '1-11-1111',
-          activeTo: '2-22-2222',
+          activeFrom: "1-11-1111",
+          activeTo: "2-22-2222",
           usersOnline: "4",
         },
         {
           appId: "soybean",
           appTitle: "Plantform",
           appUrl: "https://plantform.com",
-          activeFrom: '1-11-1111',
-          activeTo: '2-22-2222',
+          activeFrom: "1-11-1111",
+          activeTo: "2-22-2222",
           usersOnline: "30000",
         },
       ],
-      drawerisActive: false,
       isAdding: false,
       idCounter: 0,
+      isFilterOpen: false,
     };
   },
   methods: {
-    Drawer() {
-      this.drawerisActive = !this.drawerisActive;
-    },
     AddApplication() {
       this.isAdding = true;
+      console.log(this.$isFilterOpen)
     },
     Confirm(name, url, activeFrom, activeTo, usersOnline) {
       this.isAdding = false;
@@ -98,12 +103,18 @@ export default {
       this.idCounter++;
       console.log(usersOnline);
       console.log("aciveFrom" + activeFrom);
-      console.log( " active to " + activeTo);
+      console.log(" active to " + activeTo);
     },
-    Close(){
+    Close() {
       this.isAdding = false;
-    }
+    },
   },
+  watch:{
+    $isFilterOpen(){
+      this.isFilterpen = this.$isFilterOpen;
+      console.log("change");
+    }
+  }
 };
 </script>
 

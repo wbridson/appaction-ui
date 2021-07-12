@@ -1,41 +1,45 @@
 <template>
   <v-app>
-    <v-row no-gutters >
-      <v-col v-if="drawerisActive" cols="2" class="pa-0 ma-0">
-        <drawer></drawer>
+    <v-row no-gutters>
+      <v-col v-if="isDrawerOpen" cols="2" class="pa-0 ma-0">
+        <the-drawer></the-drawer>
       </v-col>
-      <v-col cols='drawerisActive ? 9 : 12' class="pa-0 ma-0">
-        <the-tool-bar title="App Action Control"  @drawer="Drawer"></the-tool-bar>
-      
-    
-    <router-view></router-view>
-    </v-col>
+      <v-col cols="drawerisActive ? 9 : 12" class="pa-0 ma-0">
+        <the-tool-bar
+          title="App Action Control"
+          @drawer="Drawer"
+          @openFilter="openFilter"
+        ></the-tool-bar>
+
+        <router-view></router-view>
+      </v-col>
     </v-row>
-      <the-footer></the-footer>
+    <the-footer></the-footer>
   </v-app>
 </template>
 
 <script>
-import TheToolBar from './components/layout/TheToolBar.vue';
-import TheFooter from './components/layout/TheFooter.vue';
-import Drawer from './components/UI/Drawer.vue';
+import TheToolBar from "./components/layout/TheToolBar.vue";
+import TheFooter from "./components/layout/TheFooter.vue";
+import TheDrawer from "./components/layout/TheDrawer.vue";
 export default {
-  name: "App",
-
   components: {
     TheToolBar,
     TheFooter,
-    Drawer,
+    TheDrawer,
   },
 
   data: () => ({
-    drawerisActive: false,
+    isDrawerOpen: false,
+    isFilterOpen: false,
   }),
   methods: {
     Drawer() {
-      this.drawerisActive = !this.drawerisActive;
+      this.isDrawerOpen = !this.isDrawerOpen;
     },
+    openFilter(){
+      this.isFilterOpen = !this.isFilterOpen;
+    }
   },
 };
 </script>
-

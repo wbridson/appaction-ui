@@ -28,7 +28,7 @@
                   </div>
                   <div class="d-flex justify-center flex-wrap">
                     <p
-                      style="max-width: 190px;"
+                      style="max-width: 9px;"
                       class="ma-0 text-subtitle-2 d-flex justify-center flex-wrap"
 
                     >
