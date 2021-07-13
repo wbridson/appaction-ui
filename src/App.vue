@@ -4,15 +4,16 @@
       <v-col v-if="isDrawerOpen" cols="2" class="pa-0 ma-0">
         <the-drawer></the-drawer>
       </v-col>
-      <v-col cols="drawerisActive ? 9 : 12" class="pa-0 ma-0">
+      <v-col cols="drawerisActive ? 9 : 12" class="pa-0 ma-0" >
         <the-tool-bar
           title="App Action Control"
           @drawer="Drawer"
           @openFilter="openFilter"
         ></the-tool-bar>
-
-        <router-view></router-view>
+        <router-view :isFilterOpen="isFilterOpen"></router-view>
+        
       </v-col>
+      
     </v-row>
     <the-footer></the-footer>
   </v-app>
@@ -37,9 +38,9 @@ export default {
     Drawer() {
       this.isDrawerOpen = !this.isDrawerOpen;
     },
-    openFilter(){
+    openFilter() {
       this.isFilterOpen = !this.isFilterOpen;
-    }
+    },
   },
 };
 </script>

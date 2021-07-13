@@ -1,16 +1,9 @@
 <template>
   <section>
-    <!-- <v-row no-gutters>
-      <v-col v-if="drawerisActive" cols="2" class="pa-0 ma-0">
-        <drawer></drawer>
-      </v-col>
-      <v-col cols='drawerisActive ? 9 : 12' class="pa-0 ma-0">
-        <the-tool-bar title="App Action Control"  @drawer="Drawer"></the-tool-bar> -->
-
-    <v-container>
-      <v-row dense>
+    <v-container class="mr-0 pr-0 pt-0 pb-0">
+      <v-row no-gutters style="min-height: 100%;">
         <v-col cols="isFilterOpen ? 10 : 12">
-          <div class="d-flex flex-wrap">
+          <div class="d-flex flex-wrap" style="min-height: 100%;">
             <add-application-button
               @add-app="AddApplication"
             ></add-application-button>
@@ -30,14 +23,11 @@
             ></application-card>
           </div>
         </v-col>
-
-        <v-col v-if="isFilterOpen" cols="2">
-          <div v-if="isFilterOpen" style="background-color: blue; min-height: 100%"><p>hi</p></div>
+        <v-col v-if="isFilterOpen" cols="2" class="pb-0 pr-0">
+          <search-filter></search-filter>
         </v-col>
       </v-row>
     </v-container>
-    <!-- </v-col> -->
-    <!-- </v-row> -->
   </section>
 </template>
 
@@ -45,13 +35,16 @@
 import ApplicationCard from "../components/UI/ApplicationCard.vue";
 import AddApplicationButton from "../components/UI/AddApplicationButton.vue";
 import AddApplicationForm from "../components/UI/AddApplicationForm.vue";
+import SearchFilter from "../components/UI/SearchFilter.vue";
 //import Drawer from "../components/UI/Drawer.vue";
 export default {
   components: {
     ApplicationCard,
     AddApplicationButton,
     AddApplicationForm,
+    SearchFilter,
   },
+  props: ["isFilterOpen"],
   data() {
     return {
       apps: [
@@ -82,13 +75,11 @@ export default {
       ],
       isAdding: false,
       idCounter: 0,
-      isFilterOpen: false,
     };
   },
   methods: {
     AddApplication() {
       this.isAdding = true;
-      console.log(this.$isFilterOpen)
     },
     Confirm(name, url, activeFrom, activeTo, usersOnline) {
       this.isAdding = false;
@@ -99,22 +90,17 @@ export default {
         activeFrom: activeFrom,
         activeTo: activeTo,
         usersOnline: 13,
+        
       });
       this.idCounter++;
       console.log(usersOnline);
       console.log("aciveFrom" + activeFrom);
-      console.log(" active to " + activeTo);
+      console.log("active to " + activeTo);
     },
     Close() {
       this.isAdding = false;
     },
   },
-  watch:{
-    $isFilterOpen(){
-      this.isFilterpen = this.$isFilterOpen;
-      console.log("change");
-    }
-  }
 };
 </script>
 

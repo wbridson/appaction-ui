@@ -27,57 +27,31 @@
               v-model="url"
             />
           </div>
-          <v-container class="text-subtitle-1 pt-1 mr-0">
-            <v-row>
-              <v-col>
-                <v-text-field
+          <v-container style="min-width: 255px;" class="d-flex justify-center ">
+            <v-row dense class="d-flex justify-center">
+              <v-col style="max-width: 130px" class="px-3">
+                <date-picker
                   label="Active From"
-                  v-model="activeFrom"
-                  type="text"
-                  readonly
-                  class="text-subtitle-2 pt-7 "
-                  @click="OpenFromDateSelector"
-                ></v-text-field>
+                  @dateSelected="setActiveFrom"
+                ></date-picker>
               </v-col>
-              <v-col>
-                <v-text-field
+              <v-col style="max-width: 130px" class="px-5">
+                <date-picker
                   label="Active To"
-                  v-model="activeTo"
-                  type="text"
-                  readonly
-                  class="text-subtitle-2 pt-7"
-                  @click="OpenToDateSelector"
-                ></v-text-field>
+                  :defaultDate="false"
+                  @dateSelected="setActiveTo"
+                ></date-picker>
               </v-col>
-            </v-row>
-
-            <v-row v-if="isSelectingFrom && !isSelectingTo" justify="center" class="float-end">
-              <v-date-picker
-                v-model="activeFrom"
-                year-icon="mdi-calendar-blank"
-                prev-icon="mdi-skip-previous"
-                next-icon="mdi-skip-next"
-                elevation="24"
-                @change="OpenFromDateSelector"
-              ></v-date-picker>
-            </v-row>
-            <v-row v-if="isSelectingTo && !isSelectingFrom" justify="center" class="float-end">
-              <v-date-picker
-                v-model="activeTo"
-                year-icon="mdi-calendar-blank"
-                prev-icon="mdi-skip-previous"
-                next-icon="mdi-skip-next"
-                elevation="24"
-                @change="OpenToDateSelector"
-              ></v-date-picker>
             </v-row>
           </v-container>
+
           <div class="align-end d-flex">
             <v-btn
-              v-if="!isSelectingFrom && !isSelectingTo"
               block
               class="light-green darken-3"
-              @click="$emit('confirm', name, url, activeFrom, activeTo, usersOnline)"
+              @click="
+                $emit('confirm', name, url, activeFrom, activeTo, usersOnline)
+              "
               >Confirm</v-btn
             >
           </div>
@@ -88,30 +62,29 @@
 </template>
 
 <script>
+import DatePicker from "./DatePicker.vue";
+
 export default {
+  components: {
+    DatePicker,
+  },
   emits: ["confirm", "close"],
   data() {
     return {
       name: "",
       url: "",
       usersOnline: "",
-      isSelectingFrom: false,
-      isSelectingTo: false,
-      activeFrom: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
+      activeFrom: "",
       activeTo: "",
     };
   },
   methods: {
-    OpenFromDateSelector() {
-      this.isSelectingTo = false;
-      this.isSelectingFrom = !this.isSelectingFrom;
-      console.log("change");
+    setActiveFrom(selectedDate) {
+      this.activeFrom = selectedDate;
+      console.log("hi");
     },
-    OpenToDateSelector() {
-      this.isSelectingFrom = false;
-      this.isSelectingTo = !this.isSelectingTo;
+    setActiveTo(selectedDate) {
+      this.activeTo = selectedDate;
     },
   },
 };
