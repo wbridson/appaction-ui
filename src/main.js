@@ -6,7 +6,6 @@ import router from './router.js';
 import DatePicker from './components/UI/DatePicker.vue';
 
 Vue.config.productionTip = false;
-Vue.prototype.$isFilterOpen = false;
 
 Vue.component('date-picker', DatePicker);
 new Vue({

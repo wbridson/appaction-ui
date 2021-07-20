@@ -1,8 +1,8 @@
 <template>
-  <v-toolbar dark prominent color="primary darken-2" style="max-height: 70px;">
+  <v-toolbar dark prominent color="primary darken-2" style="max-height: 70px;" >
     <v-app-bar-nav-icon @click="$emit('drawer')"></v-app-bar-nav-icon>
   <v-container class="d-flex justify-center">
-    <h1 class="text-h4 d-flex justify-center">{{ title }}</h1>
+    <h1 class="text-sm-h4 d-flex justify-center">{{ title }}</h1>
   </v-container>
     <v-spacer></v-spacer>
 
@@ -18,19 +18,8 @@ export default {
   emits: ["drawer"],
   data() {
     return {
-      items: [
-        ["Applications", "/applications"],
-        ["Test Page", "/testpage"],
-        ["testpage", "/testpage"],
-      ],
       filterIsNeeded: true,
     };
-  },
-  methods:{
-    openFilter(){
-      this.$isFilterOpen = !this.$isFilterOpen
-      console.log("global: " + this.$isFilterOpen);
-    },
   },
   watch: {
     $route() {
@@ -41,8 +30,5 @@ export default {
       }
     },
   },
-  // beforeUpdate(){
-
-  // }
 };
 </script>

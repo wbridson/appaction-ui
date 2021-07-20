@@ -1,7 +1,7 @@
 <template>
   <v-card class="ma-0 pa-0 rounded-0" height="100%">
     <v-navigation-drawer
-      absolute
+      
       dark
       color="primary lighten-2"
       width="100%"
@@ -29,13 +29,15 @@
   </v-card>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
       items: [
         ["mdi-view-module", "Applications", "/applications"],
-        ["mdi-triforce", "Test Page", "/testpage"],
+        ["mdi-heart", "Scott's Page", "/scottpage"],
+        ["mdi-heart", "Ziemovit's Page", "/ziemovitpage"]
       ],
       path: "i",
     };

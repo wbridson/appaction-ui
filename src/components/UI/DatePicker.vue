@@ -1,8 +1,9 @@
 <template>
   <section>
     <v-text-field
-      :label="label"
       v-model="date"
+      :label="label"
+      :background-color="color"
       type="text"
       readonly
       @click="openDateSelector"
@@ -15,6 +16,7 @@
         prev-icon="mdi-skip-previous"
         next-icon="mdi-skip-next"
         elevation="24"
+        class="px-6"
         v-click-outside="onClickOutside"
         @change="dateSelected"
         
@@ -27,16 +29,21 @@
 <script>
 export default {
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
     defaultDate: {
       type: Boolean,
       required: false,
       default: true,
     },
+    label: {
+      type: String,
+      required: false,
+    },
+    color: {
+      type: String,
+      required: false,
+    }
   },
+  emits: ['update'],
   data() {
     return {
       isSelecting: false,
@@ -53,11 +60,14 @@ export default {
     },
     dateSelected(){
       this.isSelecting = !this.isSelecting;
+      console.log(this.date);
       this.$emit('dateSelected', this.date);
+      this.$emit('update', this.date);
     },
     onClickOutside (){
       this.isSelecting = !this.isSelecting;
-    }
+    },
+    
   },
 };
 </script>

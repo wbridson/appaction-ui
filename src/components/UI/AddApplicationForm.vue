@@ -1,6 +1,6 @@
 <template>
-  <section width="300" class="pa-10">
-    <v-card width="300" height="300" class="" color="secondary lighten-2">
+  <section class="pa-10">
+    <v-card width="300" height="300" color="secondary lighten-2">
       <v-container class="pt-1">
         <div class="d-flex justify-end pt-0 pr-0">
           <v-btn icon @click="$emit('close')"
@@ -50,7 +50,7 @@
               block
               class="light-green darken-3"
               @click="
-                $emit('confirm', name, url, activeFrom, activeTo, usersOnline)
+                $emit('confirm', name, url, activeFrom, activeTo)
               "
               >Confirm</v-btn
             >
@@ -73,7 +73,6 @@ export default {
     return {
       name: "",
       url: "",
-      usersOnline: "",
       activeFrom: "",
       activeTo: "",
     };
@@ -81,7 +80,6 @@ export default {
   methods: {
     setActiveFrom(selectedDate) {
       this.activeFrom = selectedDate;
-      console.log("hi");
     },
     setActiveTo(selectedDate) {
       this.activeTo = selectedDate;

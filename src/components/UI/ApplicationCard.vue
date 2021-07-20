@@ -1,6 +1,6 @@
 <template>
-  <section width="300" class="pa-10 ma-0">
-    <router-link to="/testpage" style="text-decoration: none">
+  <section class="pa-10 ma-0">
+    <router-link to="/appmanagement" style="text-decoration: none">
       <v-card
         width="300"
         height="300"
@@ -30,7 +30,6 @@
                     <p
                       style="max-width: 9px;"
                       class="ma-0 text-subtitle-2 d-flex justify-center flex-wrap"
-
                     >
                       {{ appUrl }}
                     </p>
@@ -39,21 +38,28 @@
               </v-app-bar>
             </div>
             <v-row class="subtitle-1 pt-4">
-              <v-col  class="d-flex justify-center flex-wrap">
+              <v-col class="d-flex justify-center flex-wrap">
                 <span class="font-weight-bold">Active From: </span>
-                {{activeFrom}}
+                {{ activeFrom }}
               </v-col>
-              <v-col  class="d-flex justify-center flex-wrap">
+              <v-col class="d-flex justify-center flex-wrap">
                 <div class="font-weight-bold">Active To:</div>
-                {{activeTo}}
+                {{ activeTo }}
               </v-col>
             </v-row>
             <div class="text-h2 ml-8 pt-8">
               {{ usersOnline }}
             </div>
-            <div class="text-subtitle-2 ml-8 mt-5 ">
-              Users Online
-            </div>
+            <v-row>
+              <v-col>
+                <div class="text-subtitle-2 ml-8 mt-5 ">
+                  Users Online
+                </div>
+              </v-col>
+              <v-col class="d-flex justify-end align-end pr-10">
+                <v-icon :color="appStatusColor">mdi-circle</v-icon>
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-container>
       </v-card>
@@ -63,23 +69,30 @@
 
 <script>
 export default {
-  props: ["appTitle", "appUrl", "activeFrom", "activeTo","usersOnline"],
+  props: ["appTitle", "appUrl", "activeFrom", "activeTo", "usersOnline"],
   data() {
     return {
       isHoveringCard: false,
+      appStatusColor: "active",
+      currentDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .substr(0, 10),
       buttonColor: "secondary lighten-2",
     };
   },
   methods: {
     HoverCardSwitch() {
       this.isHoveringCard = !this.isHoveringCard;
-      // if(this.isHovering){
-      //     this.buttonColor = "secondary darken-1";
-      // }
-      // else {
-      //     this.buttonColor = "secondary";
-      // }
     },
+  },
+  beforeMount() {
+    if (!this.activeTo) {
+      this.appStatusColor = "green lighten-1";
+    } else if (new Date(this.activeTo) > new Date(this.currentDate)) {
+      this.appStatusColor = "yellow darken-3";
+    } else {
+      this.appStatusColor = "red darken-1";
+    }
   },
 };
 </script>
